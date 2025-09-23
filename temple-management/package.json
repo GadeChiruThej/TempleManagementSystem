@@ -9,7 +9,7 @@
     "tailwindcss": "^3.3.2",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.27"
-    // add any other dependencies you have
+    
   },
   "scripts": {
     "preinstall": "npm install react-scripts",
