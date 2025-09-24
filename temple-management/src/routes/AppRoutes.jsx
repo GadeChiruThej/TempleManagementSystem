@@ -1,15 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-// The Guard
 import ProtectedRoute from './ProtectedRoute.jsx';
-
-// Layouts
 import DevoteeLayout from '../layouts/DevoteeLayout.jsx';
 import AdminLayout from '../layouts/AdminLayout.jsx';
 import VolunteerLayout from '../layouts/VolunteerLayout.jsx';
-
-// Import ALL your page components
 import HomePage from '../pages/common/HomePage.jsx';
 import LoginPage from '../pages/common/LoginPage.jsx';
 import TempleTimingsPage from '../pages/common/TempleTimingsPage.jsx';
@@ -30,6 +24,12 @@ import CrowdPredictionPage from '../pages/admin/CrowdPredictionPage.jsx';
 import ManageMissingPersonsPage from '../pages/admin/ManageMissingPersonsPage.jsx';
 import ManageLostAndFoundPage from '../pages/admin/ManageLostAndFoundPage.jsx';
 import ComplaintManagementPage from '../pages/admin/ComplaintManagementPage.jsx';
+import CctvSurveillancePageAdmin from '../pages/admin/CctvSurveillancePage.jsx';
+import CctvSurveillancePageVolunteer from '../pages/volunteer/CctvSurveillancePage.jsx';
+// Import the new Overview page components
+import TempleOverviewPageCommon from '../pages/common/TempleOverviewPage.jsx';
+import TempleOverviewPageAdmin from '../pages/admin/TempleOverviewPage.jsx';
+import TempleOverviewPageVolunteer from '../pages/volunteer/TempleOverviewPage.jsx';
 
 
 const AppRoutes = () => {
@@ -39,6 +39,7 @@ const AppRoutes = () => {
                 {/* Public Routes */}
                 <Route element={<DevoteeLayout />}>
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/overview" element={<TempleOverviewPageCommon />} /> {/* <-- ADDED */}
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/timings" element={<TempleTimingsPage />} />
                     <Route path="/contact" element={<ContactUsPage />} />
@@ -53,10 +54,12 @@ const AppRoutes = () => {
                 <Route element={<ProtectedRoute requiredRole="volunteer" />}>
                     <Route path="/volunteer" element={<VolunteerLayout />}>
                         <Route index element={<VolunteerDashboard />} />
+                        <Route path="overview" element={<TempleOverviewPageVolunteer />} /> {/* <-- ADDED */}
                         <Route path="crowd-management" element={<CrowdManagementView />} />
                         <Route path="emergency" element={<EmergencyControlPanel />} />
                         <Route path="missing-persons" element={<MissingPersonsPage />} />
                         <Route path="lost-found" element={<LostAndFoundPage />} />
+                        <Route path="cctv" element={<CctvSurveillancePageVolunteer />} />
                     </Route>
                 </Route>
 
@@ -64,11 +67,13 @@ const AppRoutes = () => {
                 <Route element={<ProtectedRoute requiredRole="admin" />}>
                     <Route path="/admin" element={<AdminLayout />}>
                         <Route index element={<AdminDashboard />} />
+                        <Route path="overview" element={<TempleOverviewPageAdmin />} /> {/* <-- ADDED */}
                         <Route path="analytics" element={<CrowdAnalyticsPage />} />
                         <Route path="predictions" element={<CrowdPredictionPage />} />
                         <Route path="manage-missing" element={<ManageMissingPersonsPage />} />
                         <Route path="manage-lost-found" element={<ManageLostAndFoundPage />} />
                         <Route path="manage-complaints" element={<ComplaintManagementPage />} />
+                        <Route path="cctv" element={<CctvSurveillancePageAdmin />} />
                     </Route>
                 </Route>
             </Routes>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/images/logo.png'; // Corrected relative path for the logo
+import logo from '../../assets/images/logo.png';
 
 const MenuIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -17,9 +17,9 @@ const CloseIcon = () => (
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // Navigation links now point to the correct routes
     const navLinks = [
         { name: 'HOME', href: '/' },
+        { name: 'LIVE MAP', href: '/overview' }, // <-- UPDATED
         { name: 'TIMINGS', href: '/timings' },
         { name: 'DARSHAN BOOKING', href: '/darshan-booking' },
         { name: 'ROOM BOOKING', href: '/room-booking' },
@@ -34,7 +34,7 @@ const Navbar = () => {
             <div className="container mx-auto px-4">
                 <nav className="flex justify-between items-center py-2 text-sm">
                     <div className="hidden md:flex items-center space-x-6">
-                        {navLinks.slice(0, 4).map(link => (
+                        {navLinks.slice(0, 5).map(link => ( // Adjusted slice to include new link
                             <Link key={link.name} to={link.href} className="hover:text-orange-300 transition-colors font-semibold tracking-wider">
                                 {link.name}
                             </Link>
@@ -48,7 +48,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="hidden md:flex items-center space-x-6">
-                        {navLinks.slice(4).map(link => (
+                        {navLinks.slice(5).map(link => ( // Adjusted slice
                             <Link key={link.name} to={link.href} className="hover:text-orange-300 transition-colors font-semibold tracking-wider">
                                 {link.name}
                             </Link>
@@ -84,4 +84,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
